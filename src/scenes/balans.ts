@@ -29,17 +29,11 @@ scene.action(
       await ctx.deleteMessage();
 
       let txt = `💳 Karta orqali to'lov qilmoqchi bo'lsangiz \n
-    <b>Karta raqam</b>: <code>8600 3129 7257 8377</code>
-    <b>Kimni nomida</b>: Aliqulov Azizjon 👤
-
-     <b>Karta raqam</b>: <code>9860 6067 4202 8008</code>
-    <b>Kimni nomida</b>: Aliqulov Azizjon 👤
-
-    <b>Karta raqam</b>: <code>5614 6868 0954 7279</code>
-    <b>Kimni nomida</b>: Aliqulov Azizjon 👤   
+    <b>Karta raqam</b>: <code>9860 1901 0384 7934</code>
+    <b>Kimni nomida</b>: Maruf Xudaykulov 👤
 
     💰 karta raqamlariga to'lov qilib chekni adminga yuboring ✅
-    👨‍💼 Adminlarning kontaktlari: @magic_slide_admin @aliqulov_azizjon
+    👨‍💼 Adminlarning kontaktlari: @marufbek2002
     
     💵 Bitta taqdimot narxi 2000 so'm yoki 4000 so'm. 📊 Bunda siz 18 sahifali taqdimot yoki mustaqil ish tayyorlay olishingiz mumkin bo'ladi
 
@@ -97,7 +91,7 @@ scene.action("free", async (ctx: any) => {
    
   👥 Do'stlaringizga ulashishingiz mumkin! 2 ta do'stingiz qo'shilsa 1 ta taqdimot yoki mustaqil ish bepul bo'ladi! 🎁
   
-  🔗 Linkni bossangiz kifoya: https://t.me/Magic_slides_bot?start=${user_id} 📲`;
+  🔗 Linkni bossangiz kifoya: https://t.me/Slayd_Robo_Bot?start=${user_id} 📲`;
     ctx.reply(text);
   } catch (error) {
     console.log(error, "xatolik");
