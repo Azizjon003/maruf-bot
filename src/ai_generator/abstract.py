@@ -5,9 +5,9 @@ from docx import Document
 from docx.shared import Inches
 
 try:
-    from image_scrapper import downloader
+    from image_scrapper import unsplash
 except ImportError:
-    from .image_scrapper import downloader
+    from .image_scrapper import unsplash
 
 
 async def generate_docx_prompt(language, emotion_type, topic):
@@ -69,11 +69,12 @@ async def generate_docx(answer,time):
                     doc.add_paragraph(item[1])
                 case('IMAGE'):
                     try:
-                        image_data = await downloader.download(item[1], limit=1, adult_filter_off=True, timeout=15,
-                                                               filter="+filterui:aspect-wide+filterui:imagesize-wallpaper+filterui:photo-photo")
-                        doc.add_picture(io.BytesIO(image_data), width=Inches(6))
-                    except Exception:
-                        pass
+                        # Xavfsiz rasm — Unsplash (exclude_nudity=true), Bing o'rniga
+                        image_data = await unsplash.search_image(item[1], index=1, timeout=20)
+                        if image_data:
+                            doc.add_picture(io.BytesIO(image_data), width=Inches(6))
+                    except Exception as e:
+                        print(f"Rasm qo'yishda xato: {e}", flush=True)
 
     async def find_title(tags_array):
         for item in tags_array:

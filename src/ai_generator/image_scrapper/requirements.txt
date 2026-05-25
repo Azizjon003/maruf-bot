@@ -1,0 +1,9 @@
+# Xavfsiz rasm qidiruvi (unsplash.py) va NSFW moderatsiya (image_moderation.py)
+# uchun Python bog'liqliklari. Bing o'rniga ishlatiladi — 18+ rasmlar muammosini hal qiladi.
+#
+# O'rnatish:
+#   pip install -r src/ai_generator/image_scrapper/requirements.txt
+#
+# Eslatma: nudenet o'zi bilan numpy, onnxruntime va opencv-python-headless ni ham olib keladi.
+aiohttp>=3.9
+nudenet>=3.0.0

@@ -6,9 +6,9 @@ from pptx import Presentation
 from pptx.util import Pt
 
 try:
-    from image_scrapper import downloader
+    from image_scrapper import unsplash
 except ImportError:
-    from .image_scrapper import downloader
+    from .image_scrapper import unsplash
 
 
 async def generate_ppt_prompt(language, emotion_type, slide_length, topic):
@@ -129,11 +129,13 @@ async def generate_ppt(answer, template,time):
         # content_text_frame.paragraphs[2].font.size = Pt(20)
         # content_text_frame.paragraphs[3].font.size = Pt(20)
         try:
-            image_data = await downloader.download(image_query, limit=1, adult_filter_off=True, timeout=15,
-                                                   filter="+filterui:aspect-wide+filterui:imagesize-wallpaper+filterui:photo-photo")
-            slide.placeholders[1].insert_picture(io.BytesIO(image_data))
-        except Exception:
-            pass
+            # Xavfsiz rasm — Unsplash (exclude_nudity=true), Bing o'rniga.
+            # 18+ rasmlar muammosini hal qiladi.
+            image_data = await unsplash.search_image(image_query, index=1, timeout=20)
+            if image_data:
+                slide.placeholders[1].insert_picture(io.BytesIO(image_data))
+        except Exception as e:
+            print(f"Rasm qo'yishda xato: {e}", flush=True)
 
     async def find_text_in_between_tags(text, start_tag, end_tag):
         start_pos = text.find(start_tag)
@@ -261,11 +263,13 @@ async def generate_ppt(answer, template, time):
         # content_text_frame.paragraphs[2].font.size = Pt(20)
         # content_text_frame.paragraphs[3].font.size = Pt(20)
         try:
-            image_data = await downloader.download(image_query, limit=1, adult_filter_off=True, timeout=15,
-                                                   filter="+filterui:aspect-wide+filterui:imagesize-wallpaper+filterui:photo-photo")
-            slide.placeholders[1].insert_picture(io.BytesIO(image_data))
-        except Exception:
-            pass
+            # Xavfsiz rasm — Unsplash (exclude_nudity=true), Bing o'rniga.
+            # 18+ rasmlar muammosini hal qiladi.
+            image_data = await unsplash.search_image(image_query, index=1, timeout=20)
+            if image_data:
+                slide.placeholders[1].insert_picture(io.BytesIO(image_data))
+        except Exception as e:
+            print(f"Rasm qo'yishda xato: {e}", flush=True)
 
     def set_font_size_for_all_paragraphs(text_frame, font_size_pt):
         for paragraph in text_frame.paragraphs:
