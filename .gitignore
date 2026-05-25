@@ -132,3 +132,11 @@ dist
 
 
 .src/public
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+.venv/
