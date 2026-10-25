@@ -20,7 +20,7 @@ RUN npm ci
 COPY prisma ./prisma
 RUN npx prisma generate
 
-COPY tsconfig.json ./
+COPY tsconfig.json image.png image2.png ./
 COPY src ./src
 
 ENV NODE_ENV=production \
