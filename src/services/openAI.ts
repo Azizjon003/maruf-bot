@@ -46,7 +46,7 @@ export let createPlans = async (name: string, pages: number) => {
   const content = data.choices[0].message.content || "";
   let plans = JSON.parse(content).slides.plans;
   let plansText = plans.map((plan: any) =>
-    `${plan.uzTitle} && ${plan.enTitle}`.replace(/\d+/g, "")
+    `${plan.uzTitle} && ${plan.enTitle}`.replace(/(^|&&)\s*\d+\s*[.)\-:]\s*/g, "$1 ").trim()
   );
 
   console.log(plansText);

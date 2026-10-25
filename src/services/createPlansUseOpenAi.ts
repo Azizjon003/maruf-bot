@@ -76,7 +76,7 @@ export let createPlans = async (name: string, pages: number) => {
   }
 
   let plansText = plans.map((plan: any) => {
-    return `${plan.uz} && ${plan.eng}`.replace(/\d+/g, "");
+    return `${plan.uz} && ${plan.eng}`.replace(/(^|&&)\s*\d+\s*[.)\-:]\s*/g, "$1 ").trim();
   });
 
   console.log(plansText);
@@ -406,7 +406,7 @@ Once all guidelines are met, return the JSON object directly—without any extra
   let plansText = plans.map((plan: any) => {
     return `${xss(plan[lang])} && ${xss(
       plan[lang == "english" ? "english" : "eng"]
-    )}`.replace(/\d+/g, "");
+    )}`.replace(/(^|&&)\s*\d+\s*[.)\-:]\s*/g, "$1 ").trim();
   });
 
   console.log(plansText);
@@ -546,7 +546,7 @@ export let createPlansLanguageReferat = async (
   let plansText = plans.map((plan: any) => {
     return `${xss(plan[lang])} && ${xss(
       plan[lang == "english" ? "english" : "eng"]
-    )}`.replace(/\d+/g, "");
+    )}`.replace(/(^|&&)\s*\d+\s*[.)\-:]\s*/g, "$1 ").trim();
   });
 
   console.log(plansText);

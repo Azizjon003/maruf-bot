@@ -8,8 +8,6 @@ node_modules
 *.log
 src/data
 src/uploads
-image.png
-image2.png
 testData.json
 output*.pptx
 output*.docx

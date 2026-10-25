@@ -159,10 +159,7 @@ IMPORTANT NOTES:
 
   let plansText = plans.map((plan: any) => {
     if (!plan || typeof plan !== "object") return "Error: Invalid plan format";
-    return `${xss(plan["lang"] || "")} && ${xss(plan["eng"] || "")}`.replace(
-      /\d+/g,
-      ""
-    );
+    return `${xss(plan["lang"] || "")} && ${xss(plan["eng"] || "")}`.replace(/(^|&&)\s*\d+\s*[.)\-:]\s*/g, "$1 ").trim();
   });
 
   return plansText;
