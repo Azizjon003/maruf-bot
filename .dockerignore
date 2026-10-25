@@ -1,0 +1,17 @@
+node_modules
+.git
+.vscode
+.env
+.env.*
+**/__pycache__
+**/*.pyc
+*.log
+src/data
+src/uploads
+image.png
+image2.png
+testData.json
+output*.pptx
+output*.docx
+Dockerfile
+docker-compose.yml

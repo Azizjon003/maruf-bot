@@ -19,9 +19,8 @@ const PostgresSession = require("telegraf-postgres-session");
 
 const session = new PostgresSession({
   connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  // Local Docker Postgres has no SSL; set DB_SSL=true for managed databases.
+  ssl: process.env.DB_SSL === "true" ? { rejectUnauthorized: false } : false,
 });
 
 export default session;

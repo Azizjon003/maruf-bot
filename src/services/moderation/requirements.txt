@@ -1,0 +1,5 @@
+# NSFW moderatsiya (nsfw_worker.py) uchun Python bog'liqliklari.
+# O'rnatish:  pip install -r src/services/moderation/requirements.txt
+#
+# nudenet o'zi bilan onnxruntime va opencv-python ni ham olib keladi.
+nudenet>=3.0.0

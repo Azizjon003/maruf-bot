@@ -1,14 +1,8 @@
-import OpenAI from "openai";
 import xss from "xss";
 import { modelLang } from "./createPlansUseOpenAi";
-require("dotenv").config();
+import { openai, AI_MODEL } from "../utils/ai";
 const fs = require("fs");
 const pdf = require("pdf-parse");
-const key = process.env["OPEN_AI_KEY"] || "";
-
-const openai = new OpenAI({
-  apiKey: key,
-});
 
 async function readPdfText(filePath: string) {
   try {
@@ -27,9 +21,9 @@ export let createPlansFile = async (
   model: modelLang = modelLang.gpt3
 ) => {
   let models = {
-    "gpt-3": "gpt-4.1-mini",
-    "gpt-4": "gpt-4.1-mini",
-    fallback: "gpt-4.1-mini", // Fallback model if preferred model fails
+    "gpt-3": AI_MODEL,
+    "gpt-4": AI_MODEL,
+    fallback: AI_MODEL, // Fallback model if preferred model fails
   };
 
   let selectedModel = models["gpt-3"]; // Default to gpt-3 if invalid model specified
@@ -180,9 +174,9 @@ export let createPlansDescriptionLanguageFile = async (
   model: modelLang = modelLang.gpt3
 ) => {
   let models = {
-    "gpt-3": "gpt-4.1-mini",
-    "gpt-4": "gpt-4.1-mini",
-    fallback: "gpt-4.1-mini", // Fallback model if needed
+    "gpt-3": AI_MODEL,
+    "gpt-4": AI_MODEL,
+    fallback: AI_MODEL, // Fallback model if needed
   };
 
   let selectedModel = models["gpt-3"];

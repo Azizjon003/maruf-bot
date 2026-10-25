@@ -1,11 +1,4 @@
-import OpenAI from "openai";
-
-require("dotenv").config();
-const key = process.env["OPEN_AI_KEY"] || "";
-console.log(key);
-const openai = new OpenAI({
-  apiKey: key,
-});
+import { openai, AI_MODEL } from "../utils/ai";
 
 // const endpoint =
 //   process.env["AZURE_OPENAI_ENDPOINT"] ||
@@ -19,8 +12,8 @@ const openai = new OpenAI({
 const djJson = require("dirty-json");
 const xss = require("xss");
 let models = {
-  "gpt-3": "gpt-4o-mini",
-  "gpt-4": "gpt-4o-mini",
+  "gpt-3": AI_MODEL,
+  "gpt-4": AI_MODEL,
 };
 
 export let createPlans = async (name: string, pages: number) => {
@@ -46,7 +39,7 @@ export let createPlans = async (name: string, pages: number) => {
         content: JSON.stringify(queryJson),
       },
     ],
-    model: "gpt-4-turbo-preview",
+    model: AI_MODEL,
     // model: "gpt-3.5-turbo-0125",
     max_tokens: 1024,
     response_format: {
@@ -71,7 +64,7 @@ export let createPlans = async (name: string, pages: number) => {
       // model: "gpt-3.5-turbo-1106",
       // model: "gpt-3.5-turbo-0125",
       // model: "gpt-3.5-turbo-16k-0613",
-      model: "gpt-4-turbo-preview",
+      model: AI_MODEL,
       max_tokens: 1500,
       response_format: {
         type: "json_object",
@@ -129,7 +122,7 @@ export let createPlansDescription = async (name: string) => {
       },
     ],
     // model: "gpt-4-turbo-preview",
-    model: "gpt-3.5-turbo-0125",
+    model: AI_MODEL,
     // model: "gpt-3.5-turbo-0125",
     max_tokens: 800,
     response_format: {
@@ -155,7 +148,7 @@ export let createPlansDescription = async (name: string) => {
           content: "please JSON format based on the given structure.",
         },
       ],
-      model: "gpt-3.5-turbo-0125",
+      model: AI_MODEL,
       // model: "gpt-4-turbo-preview",
       max_tokens: 800,
       response_format: {
@@ -1027,7 +1020,7 @@ export let generateLiteratureList = async (
   topic: string,
   language: string,
   count: number = 5,
-  model: string = "gpt-4o-2024-08-06"
+  model: string = AI_MODEL
 ) => {
   // Prepare the prompt for generating literature list
   const queryJson = {

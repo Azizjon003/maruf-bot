@@ -1,11 +1,6 @@
-import OpenAI from "openai";
 import PPTXGenJS from "pptxgenjs";
 import { createPlansDescriptionLanguage } from "./createPlansUseOpenAi";
-require("dotenv").config();
-const key = process.env["OPEN_AI_KEY"] || "";
-const openai = new OpenAI({
-  apiKey: String(key), // This is the default and can be omitted
-});
+import { openai, AI_MODEL } from "../utils/ai";
 async function createPresentation(presentationTitle: string) {
   const queryJson = `{
     "input_text": "Generate a 10 slide presentation for the topic. Produce 200 to 400 words per slide. ${presentationTitle}. Each slide should have a {{header}}, {{content}}. The final slide should be a list of discussion questions. Return as JSON.",
@@ -17,7 +12,7 @@ async function createPresentation(presentationTitle: string) {
 
   try {
     const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
+      model: AI_MODEL,
       messages: [{ role: "user", content: queryJson }],
       max_tokens: 4096,
     });
@@ -68,7 +63,7 @@ export async function createPlans(name: string, pages: number) {
       },
     ],
     // model: "gpt-3.5-turbo-1106",
-    model: "gpt-3.5-turbo-16k-0613",
+    model: AI_MODEL,
     max_tokens: 4096,
   });
   const plans = JSON.parse(String(chatCompletion.choices[0].message.content))
@@ -119,7 +114,7 @@ export async function createPlansDescription(name: string) {
         content: JSON.stringify(queryJson),
       },
     ],
-    model: "gpt-3.5-turbo-0125",
+    model: AI_MODEL,
     max_tokens: 1024,
     frequency_penalty: 0,
     response_format: {
